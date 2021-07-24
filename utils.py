@@ -3,6 +3,11 @@ import gzip
 from Bio import SeqIO
 
 def download(url):
+    '''
+    download .bz file from url
+    
+    url: download link
+    '''
     filename = url.split('/')[-1]
     with open(filename, 'wb') as f:
         r = requests.get(url)
@@ -10,10 +15,13 @@ def download(url):
     return filename
 
 def upload(url):
+    '''
+    upload and parse file from link
+    
+    url: upload link
+    
+    return parsed dictionary
+    '''
     filename = download(url)
     with gzip.open(filename, 'rt') as handle:
         return {rec.id: str(rec.seq) for rec in SeqIO.parse(handle, 'fasta')}
-    
-#def load_prot(url_prot):
-#    filename_prot = download(url_prot)
-#    return {rec.id.split('|')[1]: str(rec.seq) for rec in SeqIO.parse(filename_prot, 'fasta')}
