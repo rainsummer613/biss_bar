@@ -1,0 +1,5 @@
+collections
+requests
+gzip
+pandas
+biopython

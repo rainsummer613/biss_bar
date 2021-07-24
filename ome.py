@@ -1,6 +1,49 @@
 from collections import Counter
 from utils import *
 
+class Ome:
+    
+    def __init__(self, name, url):
+        '''
+        initialize instance for Species
+        
+        name: species name
+        url: link to download genome/proteome
+        '''
+        self.name = name
+        self.seq = upload(url)
+        
+    @staticmethod
+    def _kmers(sequence, size, step):
+        for x in range(0, len(sequence) - size, step):
+            yield sequence[x:x+size]
+        
+    def get_kmers(self, size=35, step=1):
+        '''
+        get k-mers from raw sequences
+        
+        size: k (k-mer length)
+        step: step size for building k-mer
+        
+        returns
+        kmers: dict of kmers
+        kmers_counter: kmers frequencies
+        '''
+    
+        kmers = {k: list(Ome._kmers(self.seq[k], size, step)) for k in self.seq}
+        kmers['all'] = sum(list(kmers.values()), [])
+        kmers_counter = {k: Counter(v) for k,v in kmers.items()}
+        self.kmers = kmers 
+        self.kmers_counter = kmers_counter
+
+class Genome(Ome):
+    pass
+
+class Proteome(Ome):
+    pass
+
+
+
 class Bacteria:
     
     def __init__(self, name, url_prot, url_gen):
@@ -49,7 +92,7 @@ class Bacteria:
     
     def get_kmers_prot(self, kmer_len=5, kmer_step=1):
         '''
-        get and save k-mers for proteome to arguments
+        get and save k-mers for genome and proteome to arguments
         
         kmer_len: k (k-mer length)
         kmer_step: step size for building k-mer
