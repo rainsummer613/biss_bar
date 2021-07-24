@@ -1,6 +1,7 @@
 import requests
 import gzip
 from Bio import SeqIO
+import os
 
 def download(url):
     '''
@@ -9,9 +10,10 @@ def download(url):
     url: download link
     '''
     filename = url.split('/')[-1]
-    with open(filename, 'wb') as f:
-        r = requests.get(url)
-        f.write(r.content)
+    if not os.path.isfile(filename):
+        with open(filename, 'wb') as f:
+            r = requests.get(url)
+            f.write(r.content)
     return filename
 
 def upload(url):
