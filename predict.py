@@ -33,8 +33,6 @@ if __name__ == '__main__':
         genome = Genome(opt.name, opt.url)
         print('calculating kmers')
         genome.get_kmers()
-        if kmer_res is False:
-            res = error_msg
         print('vectorizing')
         vector = vectorizer.transform([' '.join(genome.kmers['all'])])
         print('vectorized')
