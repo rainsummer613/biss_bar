@@ -28,8 +28,7 @@ class Ome:
         returns
         kmers: dict of kmers
         kmers_counter: kmers frequencies
-        '''
-    
+        '''    
         kmers = {k: list(Ome._kmers(self.seq[k], size, step)) for k in self.seq}
         kmers['all'] = sum(list(kmers.values()), [])
         kmers_counter = {k: Counter(v) for k,v in kmers.items()}
