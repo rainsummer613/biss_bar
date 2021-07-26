@@ -37,7 +37,7 @@ def handle_hello(message):
     state = states_dict[0]
     bot.send_message(message.chat.id, 'Пришлите мне рабочую ссылку на скачивание архива с геномом в формате .fna.gz\nА я определю, насколько эта бактерия патогенная.')  
                  
-@bot.message_handler(regexp='https\://.+\.fna\.gz')
+@bot.message_handler(regexp='https?.+\.fna\.gz')
 def handle_url(message):
     global state
     if state == states_dict[1]:
@@ -56,10 +56,7 @@ def handle_name(message):
             bot.send_message(message.chat.id, f'скачиваю файл...')
             genome = Genome(name, opt.url)
             bot.send_message(message.chat.id, f'анализирую геном...')
-            kmer_res = genome.get_kmers()
-            
-            if kmer_res is False:
-                res = error_msg
+            genome.get_kmers()
             vector = vectorizer.transform([' '.join(genome.kmers['all'])])
             pred = model.predict(vector)   
             res = labels[pred[0]]
@@ -67,6 +64,7 @@ def handle_name(message):
             res = error_msg
             state = 0
         bot.send_message(message.chat.id, res)
+        state = 0
                      
 @bot.message_handler(commands=['help'])
 def handle_help(message):
