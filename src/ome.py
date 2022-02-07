@@ -2,7 +2,6 @@ from collections import Counter
 from utils import *
 
 class Ome:
-    
     def __init__(self, name, url):
         '''
         initialize instance for Species
@@ -36,7 +35,6 @@ class Ome:
         self.kmers_counter = kmers_counter
 
 class Bacteria:
-    
     def __init__(self, name, url_prot, url_gen):
         '''
         initialize instance for Species
