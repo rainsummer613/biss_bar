@@ -35,14 +35,6 @@ class Ome:
         self.kmers = kmers 
         self.kmers_counter = kmers_counter
 
-class Genome(Ome):
-    pass
-
-class Proteome(Ome):
-    pass
-
-
-
 class Bacteria:
     
     def __init__(self, name, url_prot, url_gen):
