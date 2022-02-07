@@ -3,7 +3,7 @@ This repository contains code for the project of *Bioinformatics Summer School 2
 
 The project is based on paper by Gupta, Kim et al. (2020), which introduced the `Gut Microbiome Health Index (GMHI)` - a biologically-interpretable mathematical formula for predicting the likelihood of disease. According to the results, the gut microbiota can predict the health status. It means that certain bacteria are likely to be found in the stool of healthy individuals, while the presence of other bacteria can be a predictor for the disease.
 
-The goal of our project was to develop a ML algorithm for predicting a **pathogenicity** of a certain bacterium based on its genome sequence or protein compartments.
+The goal of our project was to develop a ML algorithm for predicting a **pathogenicity** of a certain bacterium based on its genome or proteome.
 
 The project presentation:  
 https://docs.google.com/presentation/d/1jR3JrjffHiuWULoDZIyOEPGNiQVdJIrm (**in Russian!**)
